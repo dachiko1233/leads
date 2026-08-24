@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* ---- Design tokens (see PROJECT.md §3 Visual Tone) ---------------------- */
+@theme {
+  --color-ink: #0b1120; /* deep navy background */
+  --color-ink-soft: #111a2e; /* raised panel */
+  --color-ink-line: #1e293b; /* hairline borders */
+  --color-cyan: #22d3ee; /* primary accent — signal cyan */
+  --color-lime: #3df5a0; /* secondary accent — electric lime */
+  --color-warm: #f5f7fa; /* warm white text */
+  --color-muted: #94a3b8; /* muted gray secondary text */
+  --color-danger: #f43f5e; /* "dead" activity pulse */
+
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---- Base -------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-ink);
+  color: var(--color-warm);
+}
+
+body {
+  font-family: var(--font-body);
+  background:
+    radial-gradient(60rem 40rem at 80% -10%, rgba(34, 211, 238, 0.09), transparent 60%),
+    radial-gradient(50rem 30rem at 0% 10%, rgba(61, 245, 160, 0.06), transparent 55%),
+    var(--color-ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Visible keyboard focus everywhere. */
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---- Signature element: the "activity meter" -------------------------- */
+/* A flat-lining / pulsing indicator that a page is "dead". */
+@keyframes deadPulse {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.55); }
+  50% { opacity: 0.5; transform: scale(0.92); box-shadow: 0 0 0 8px rgba(244, 63, 94, 0); }
+}
+
+@keyframes flatline {
+  0% { stroke-dashoffset: 240; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.dead-dot {
+  animation: deadPulse 1.8s ease-in-out infinite;
+}
+
+.flatline-path {
+  stroke-dasharray: 240;
+  animation: flatline 3.2s linear infinite;
+}

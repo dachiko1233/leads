@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Juniper & Co. Salon",
+    "category": "Hair salon",
+    "location": "1204 S Lamar Blvd, Austin, TX 78704",
+    "lastPost": "no posts",
+    "instagram": null,
+    "facebook": null,
+    "telephone": "+1 512-555-0142",
+    "email": "hello@juniperco.com",
+    "website": "https://juniperco.com",
+    "hotScore": 88
+  },
+  {
+    "name": "Blue Agave Cantina",
+    "category": "Mexican restaurant",
+    "location": "88 Congress Ave, Austin, TX 78701",
+    "lastPost": "unknown",
+    "instagram": null,
+    "facebook": null,
+    "telephone": "+1 512-555-0199",
+    "email": null,
+    "website": null,
+    "hotScore": 84
+  },
+  {
+    "name": "Lone Star Auto Detailing",
+    "category": "Car detailing service",
+    "location": "410 E Ben White Blvd, Austin, TX 78704",
+    "lastPost": "72 days ago",
+    "instagram": "@lonestardetail",
+    "facebook": null,
+    "telephone": "+1 512-555-0121",
+    "email": "book@lonestardetail.com",
+    "website": "https://lonestardetail.com",
+    "hotScore": 63
+  },
+  {
+    "name": "Hill Country Yoga Studio",
+    "category": "Yoga studio",
+    "location": "3005 S Congress Ave, Austin, TX 78704",
+    "lastPost": "45 days ago",
+    "instagram": "@hillcountryyoga",
+    "facebook": "fb.com/hillcountryyoga",
+    "telephone": "+1 512-555-0177",
+    "email": "namaste@hillcountryyoga.com",
+    "website": "https://hillcountryyoga.com",
+    "hotScore": 41
+  },
+  {
+    "name": "The Copper Kettle Cafe",
+    "category": "Cafe",
+    "location": "720 W 6th St, Austin, TX 78701",
+    "lastPost": "unknown",
+    "instagram": null,
+    "facebook": "fb.com/copperkettleatx",
+    "telephone": "+1 512-555-0163",
+    "email": null,
+    "website": "https://copperkettleatx.com",
+    "hotScore": 58
+  },
+  {
+    "name": "Barton Springs Bike Repair",
+    "category": "Bicycle repair shop",
+    "location": "2101 Barton Springs Rd, Austin, TX 78746",
+    "lastPost": "no posts",
+    "instagram": null,
+    "facebook": null,
+    "telephone": "+1 512-555-0188",
+    "email": "ride@bartonspringsbikes.com",
+    "website": "https://bartonspringsbikes.com",
+    "hotScore": 79
+  },
+  {
+    "name": "Maple & Thread Boutique",
+    "category": "Clothing store",
+    "location": "1618 S 1st St, Austin, TX 78704",
+    "lastPost": "120 days ago",
+    "instagram": "@mapleandthread",
+    "facebook": null,
+    "telephone": "+1 512-555-0155",
+    "email": null,
+    "website": "https://mapleandthread.com",
+    "hotScore": 67
+  },
+  {
+    "name": "East Side Dental Care",
+    "category": "Dentist",
+    "location": "979 Springdale Rd, Austin, TX 78702",
+    "lastPost": "unknown",
+    "instagram": null,
+    "facebook": null,
+    "telephone": "+1 512-555-0110",
+    "email": "front@eastsidedental.com",
+    "website": "https://eastsidedental.com",
+    "hotScore": 74
+  }
+]
