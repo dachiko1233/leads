@@ -82,13 +82,13 @@ export async function searchBusinesses({
 
   const businesses: Business[] = [];
   let pageToken: string | undefined;
+  // Places API (New) requires paged requests to keep the same params as the
+  // first call, so pageSize must stay constant across pages (not shrink).
+  const pageSize = Math.min(MAX_PAGE_SIZE, limit);
 
   // Paginate until we have enough results or Google runs out of pages.
   while (businesses.length < limit) {
-    const body: Record<string, unknown> = {
-      textQuery,
-      pageSize: Math.min(MAX_PAGE_SIZE, limit - businesses.length),
-    };
+    const body: Record<string, unknown> = { textQuery, pageSize };
     if (pageToken) body.pageToken = pageToken;
 
     const res = await fetch(TEXT_SEARCH_URL, {

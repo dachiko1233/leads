@@ -46,15 +46,17 @@ export async function POST(request: Request): Promise<Response> {
     return NextResponse.json({ error: "A business category/query is required." }, { status: 400 });
   }
 
-  const productId = process.env.DODO_LEAD_PRODUCT_ID;
+  // Product id: prefer DODO_PRODUCT_ID; fall back to the older DODO_LEAD_PRODUCT_ID.
+  const productId = process.env.DODO_PRODUCT_ID ?? process.env.DODO_LEAD_PRODUCT_ID;
   if (!productId) {
     return NextResponse.json(
-      { error: "Server misconfigured: DODO_LEAD_PRODUCT_ID is not set." },
+      { error: "Server misconfigured: DODO_PRODUCT_ID is not set." },
       { status: 500 },
     );
   }
 
-  const origin = new URL(request.url).origin;
+  // Base URL for the return redirect: prefer APP_URL, else derive from the request.
+  const appUrl = process.env.APP_URL ?? new URL(request.url).origin;
 
   try {
     const client = getDodoClient();
@@ -73,7 +75,7 @@ export async function POST(request: Request): Promise<Response> {
       customer: { email, name: nameFromEmail(email) },
       // (4) Keep the charge in EUR — the product is EUR-priced and we forbid switching currency.
       feature_flags: { allow_currency_selection: false },
-      return_url: `${origin}/checkout/success`,
+      return_url: `${appUrl}/checkout/success`,
       // (5) Ride-along order details for the payment.succeeded webhook.
       metadata: {
         email,
