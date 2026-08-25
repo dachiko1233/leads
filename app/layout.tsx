@@ -15,7 +15,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "NearoLeads — Businesses neglecting their social media",
+  title: "GhostLeads — Businesses neglecting their social media",
   description:
     "We find local businesses with abandoned or inactive social media pages — the clients who need your marketing the most. Pay per lead, delivered as a CSV.",
 };
