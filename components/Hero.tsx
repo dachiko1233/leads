@@ -11,8 +11,8 @@ export function Hero() {
           </span>
 
           <h1 className="mt-6 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
-            Find local businesses that are{" "}
-            <span className="text-[color:var(--color-cyan)]">neglecting</span> their
+            Find local businesses that{" "}
+            <span className="text-[color:var(--color-cyan)]">don't have </span>
             social media.
           </h1>
 
@@ -38,7 +38,9 @@ export function Hero() {
           </div>
 
           <p className="mt-6 text-sm text-[color:var(--color-muted)]">
-            <span className="font-semibold text-[color:var(--color-warm)]">€1 per lead.</span>{" "}
+            <span className="font-semibold text-[color:var(--color-warm)]">
+              €1 per lead.
+            </span>{" "}
             No subscription — pick a package, get a CSV.
           </p>
         </div>
@@ -48,8 +50,12 @@ export function Hero() {
           <div className="rounded-2xl border border-[color:var(--color-ink-line)] bg-[color:var(--color-ink-soft)] p-6 shadow-2xl shadow-black/40">
             <div className="flex items-center justify-between">
               <div>
-                <div className="font-display text-lg font-semibold">@junipersalon</div>
-                <div className="text-sm text-[color:var(--color-muted)]">Hair salon · Austin, TX</div>
+                <div className="font-display text-lg font-semibold">
+                  @junipersalon
+                </div>
+                <div className="text-sm text-[color:var(--color-muted)]">
+                  Hair salon · Austin, TX
+                </div>
               </div>
               <span className="rounded-full bg-[color:var(--color-danger)]/15 px-3 py-1 text-xs font-semibold text-[color:var(--color-danger)]">
                 Hot 88
@@ -63,7 +69,9 @@ export function Hero() {
             <dl className="mt-6 grid grid-cols-2 gap-4 text-sm">
               <div>
                 <dt className="text-[color:var(--color-muted)]">Last post</dt>
-                <dd className="font-semibold text-[color:var(--color-danger)]">No posts</dd>
+                <dd className="font-semibold text-[color:var(--color-danger)]">
+                  No posts
+                </dd>
               </div>
               <div>
                 <dt className="text-[color:var(--color-muted)]">Website</dt>
