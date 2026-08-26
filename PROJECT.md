@@ -28,7 +28,7 @@ The customer buys a lead package (not a subscription), pays with
 ### Pricing
 - **1 lead = €1** (one euro).
 - Package = number of leads chosen by the customer × €1.
-- E.g.: 100 leads = €100, 400 = €400, 1000 = €1000.
+- Range: 20–1000 leads. E.g.: 20 leads = €20, 400 = €400, 1000 = €1000.
 
 ---
 
@@ -136,7 +136,7 @@ leads"**.
      the "hot" signal.
 4. **How it works** — 3 steps:
    `01 Collect public data -> 02 Analyze activity -> 03 Deliver a prioritized list`
-5. **Pricing** — slider (100–1000 leads), live price (€1/lead),
+5. **Pricing** — slider (20–1000 leads), live price (€1/lead),
    CTA **"Send me my list"** -> Dodo Payments checkout.
 6. **FAQ** (short, 4–5 questions).
 7. **Footer** — logo, Contact, FAQ links.

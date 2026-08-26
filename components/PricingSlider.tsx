@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-const MIN = 100;
+const MIN = 20;
 const MAX = 1000;
-const STEP = 50;
+const STEP = 10;
 const PRICE_PER_LEAD = 1; // €1 / lead
 
 export function PricingSlider() {
-  const [leads, setLeads] = useState(300);
+  const [leads, setLeads] = useState(100);
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");

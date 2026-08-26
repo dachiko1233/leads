@@ -20,14 +20,15 @@ const SOCIAL_CONCURRENCY = 6;
  * Produce a scored, prioritized list of leads for a query + location.
  */
 export async function generateLeads(params: GenerateLeadsParams): Promise<Lead[]> {
-  const { limit } = params;
+  const { limit, query, location } = params;
 
   if (sampleDataEnabled()) {
     const sample = await loadSample();
     return sample.sort(byHotness).slice(0, limit);
   }
 
-  // 1) Find real businesses.
+  // 1) Find real businesses (searchBusinesses widens across query variants to
+  //    reach `limit` when a single query hits Google's ~60-result cap).
   const businesses = await searchBusinesses(params);
 
   // 2) Discover + analyze social presence (bounded concurrency).
@@ -36,8 +37,20 @@ export async function generateLeads(params: GenerateLeadsParams): Promise<Lead[]
     return toLead(b, social);
   });
 
-  // 3) Score is computed in toLead(); sort by hotness descending.
-  return leads.sort(byHotness).slice(0, limit);
+  // 3) Score is computed in toLead(); sort by hotness descending, then cap to
+  //    exactly the paid quantity.
+  const result = leads.sort(byHotness).slice(0, limit);
+
+  // 4) If Google genuinely didn't have enough businesses, don't fail silently:
+  //    warn clearly and deliver what we found.
+  if (result.length < limit) {
+    console.warn(
+      `leads: requested ${limit}, found ${result.length} for "${query}"` +
+        `${location ? ` in "${location}"` : ""} — delivering what was found.`,
+    );
+  }
+
+  return result;
 }
 
 function byHotness(a: Lead, b: Lead): number {

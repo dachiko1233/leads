@@ -15,7 +15,10 @@ interface CheckoutBody {
   location?: string;
 }
 
-const MIN_LEADS = 100;
+// Pricing range: 20–1000 leads at €1 each. The Dodo dynamic-price product must be
+// configured to match in the Dodo dashboard: min price €20, max price €1000
+// (leads * €1). Keep these in sync with the frontend slider and the Dodo product.
+const MIN_LEADS = 20;
 const MAX_LEADS = 1000;
 const PRICE_PER_LEAD_CENTS = 100; // €1.00 per lead, in the currency's lowest unit.
 
