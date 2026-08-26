@@ -103,6 +103,24 @@ export async function searchBusinesses({
   return Array.from(seen.values()).slice(0, limit);
 }
 
+// Sub-area qualifiers used to diversify results within the same city. Text Search
+// returns nearly the SAME top businesses for reworded queries ("best X", "X
+// services"), so those don't grow the deduped set. Steering the search toward
+// different parts of the city ("downtown X", "north X", …) DOES surface distinct
+// businesses, which is how we get past a single query's ~60-result cap.
+const SUB_AREAS = [
+  "downtown",
+  "north",
+  "south",
+  "east",
+  "west",
+  "central",
+  "northeast",
+  "northwest",
+  "southeast",
+  "southwest",
+];
+
 /**
  * Build an ordered list of Text Search queries, widening progressively.
  * The New Text Search understands natural-language location, so we fold the
@@ -112,14 +130,15 @@ export async function searchBusinesses({
  */
 function buildQueryVariants(query: string, location?: string): string[] {
   if (!location) return [query];
-  // Order matters: most precise first, then broader phrasings and nearby framing
-  // to pull additional relevant businesses past the single-query 60-result cap.
   return [
+    // 1) Primary query (paginated to ~60 on its own).
     `${query} in ${location}`,
+    // 2) Sub-area sweeps — each targets a different part of the city, so their
+    //    results are largely NEW businesses rather than duplicates.
+    ...SUB_AREAS.map((area) => `${query} in ${area} ${location}`),
+    // 3) Broadest fallbacks last.
     `${query} near ${location}`,
-    `best ${query} in ${location}`,
-    `${query} services in ${location}`,
-    `local ${query} ${location}`,
+    query,
   ];
 }
 
