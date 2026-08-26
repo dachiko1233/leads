@@ -22,13 +22,13 @@ export async function sendLeadsEmail({
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) throw new Error("RESEND_API_KEY is not set.");
 
-  const from = process.env.RESEND_FROM_EMAIL ?? "leads@yourdomain.com";
+  const from = process.env.RESEND_FROM_EMAIL ?? "leads@getghostleads.com";
   const resend = new Resend(apiKey);
 
   const { error } = await resend.emails.send({
     from,
     to,
-    subject: `Your NearoLeads list is ready (${leads.length} leads)`,
+    subject: `Your GhostLeads list is ready (${leads.length} leads)`,
     html: buildHtml(leads.length),
     attachments: [{ filename: "leads.csv", content: csvBuffer }],
   });
@@ -47,7 +47,7 @@ function buildHtml(count: number): string {
         their social media — ranked by how "hot" they are.
       </p>
       <p style="margin:0 0 8px;">Your full list is attached as <code>leads.csv</code>.</p>
-      <p style="margin:16px 0 0; color:#64748B; font-size:13px;">— NearoLeads</p>
+      <p style="margin:16px 0 0; color:#64748B; font-size:13px;">— GhostLeads</p>
     </div>
   `;
 }
