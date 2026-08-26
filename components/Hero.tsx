@@ -12,8 +12,10 @@ export function Hero() {
 
           <h1 className="mt-6 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
             Find local businesses that{" "}
-            <span className="text-[color:var(--color-cyan)]">don't have </span>
-            social media.
+            <span className="text-[color:var(--color-cyan)]">
+              aren&apos;t active{" "}
+            </span>
+            on social media.
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-[color:var(--color-muted)]">
