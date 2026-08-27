@@ -114,22 +114,28 @@ export function Hero() {
             </div>
 
             {/* table */}
-            <div className="text-left">
-              <table className="w-full table-fixed border-collapse text-base">
+            <div className="overflow-x-auto text-left">
+              <table className="w-full min-w-[720px] border-collapse text-sm sm:text-base">
                 <thead>
-                  <tr className="border-b border-[color:var(--color-ink-line)] text-sm uppercase tracking-wide text-[color:var(--color-muted)]">
-                    <th className="px-6 py-4 text-left font-medium">Name</th>
-                    <th className="px-6 py-4 text-left font-medium">
+                  <tr className="border-b border-[color:var(--color-ink-line)] text-xs uppercase tracking-wide text-[color:var(--color-muted)] sm:text-sm">
+                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
+                      Name
+                    </th>
+                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
                       Category
                     </th>
-                    <th className="px-6 py-4 text-left font-medium">
+                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
                       Location
                     </th>
-                    <th className="px-6 py-4 text-left font-medium">
+                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
                       Last Post
                     </th>
-                    <th className="px-6 py-4 text-left font-medium">Phone</th>
-                    <th className="px-6 py-4 text-left font-medium">Email</th>
+                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
+                      Phone
+                    </th>
+                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
+                      Email
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -138,22 +144,22 @@ export function Hero() {
                       key={r.name}
                       className="border-b border-[color:var(--color-ink-line)]/60 transition-colors last:border-0 hover:bg-white/[0.02]"
                     >
-                      <td className="break-words px-6 py-4 font-semibold text-[color:var(--color-warm)]">
+                      <td className="whitespace-nowrap px-4 py-3 font-semibold text-[color:var(--color-warm)] sm:px-6 sm:py-4">
                         {r.name}
                       </td>
-                      <td className="break-words px-6 py-4 text-[color:var(--color-muted)]">
+                      <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)] sm:px-6 sm:py-4">
                         {r.category}
                       </td>
-                      <td className="break-words px-6 py-4 text-[color:var(--color-muted)]">
+                      <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)] sm:px-6 sm:py-4">
                         {r.location}
                       </td>
-                      <td className="break-words px-6 py-4 font-medium text-[color:var(--color-danger)]">
+                      <td className="whitespace-nowrap px-4 py-3 font-medium text-[color:var(--color-danger)] sm:px-6 sm:py-4">
                         {r.lastPost}
                       </td>
-                      <td className="break-words px-6 py-4 text-[color:var(--color-muted)]">
+                      <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)] sm:px-6 sm:py-4">
                         {r.phone}
                       </td>
-                      <td className="break-words px-6 py-4 text-[color:var(--color-muted)]">
+                      <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)] sm:px-6 sm:py-4">
                         {r.email}
                       </td>
                     </tr>
