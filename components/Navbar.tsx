@@ -3,7 +3,7 @@ import { Logo } from "./Logo";
 export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-[color:var(--color-ink-line)] bg-[color:var(--color-ink)]/80 backdrop-blur">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
         <a
           href="#top"
           className="flex items-center gap-2"

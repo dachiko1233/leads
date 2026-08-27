@@ -60,7 +60,7 @@ export function Hero() {
         <div className="absolute left-1/2 top-24 h-[26rem] w-24 -translate-x-1/2 bg-gradient-to-b from-white/20 to-transparent blur-xl" />
       </div>
 
-      <div className="relative mx-auto flex max-w-5xl flex-col items-center px-6 pb-24 pt-24 text-center lg:pb-32 lg:pt-32">
+      <div className="relative mx-auto flex max-w-5xl flex-col items-center px-6 pb-24 pt-12 text-center lg:pb-32 lg:pt-16">
         <span className="inline-flex items-center gap-2 self-start rounded-full border border-[color:var(--color-ink-line)] bg-[color:var(--color-ink-soft)] px-4 py-1.5 text-sm font-medium text-[color:var(--color-muted)]">
           <span className="dead-dot inline-block h-2 w-2 rounded-full bg-[color:var(--color-lime)]" />
           Hot leads, updated on demand
