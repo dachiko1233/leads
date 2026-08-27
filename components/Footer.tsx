@@ -14,12 +14,6 @@ export function Footer() {
         </a>
         <nav className="flex items-center gap-6 text-sm text-[color:var(--color-muted)]">
           <a
-            href="#faq"
-            className="transition hover:text-[color:var(--color-warm)]"
-          >
-            FAQ
-          </a>
-          <a
             href="#pricing"
             className="transition hover:text-[color:var(--color-warm)]"
           >

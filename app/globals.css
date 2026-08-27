@@ -52,24 +52,3 @@ h1, h2, h3, .font-display {
     transition-duration: 0.001ms !important;
   }
 }
-
-/* ---- Signature element: the "activity meter" -------------------------- */
-/* A flat-lining / pulsing indicator that a page is "dead". */
-@keyframes deadPulse {
-  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.55); }
-  50% { opacity: 0.5; transform: scale(0.92); box-shadow: 0 0 0 8px rgba(244, 63, 94, 0); }
-}
-
-@keyframes flatline {
-  0% { stroke-dashoffset: 240; }
-  100% { stroke-dashoffset: 0; }
-}
-
-.dead-dot {
-  animation: deadPulse 1.8s ease-in-out infinite;
-}
-
-.flatline-path {
-  stroke-dasharray: 240;
-  animation: flatline 3.2s linear infinite;
-}
