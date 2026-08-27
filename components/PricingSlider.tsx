@@ -56,11 +56,13 @@ export function PricingSlider() {
         <div className="flex items-end justify-between">
           <div>
             <div className="text-sm text-[color:var(--color-muted)]">Leads</div>
-            <div className="font-display text-4xl font-bold">{leads}</div>
+            <div className="font-display pt-1 text-4xl font-bold leading-tight">
+              {leads}
+            </div>
           </div>
           <div className="text-right">
             <div className="text-sm text-[color:var(--color-muted)]">Total</div>
-            <div className="font-display text-4xl font-bold text-[color:var(--color-cyan)]">
+            <div className="font-display pt-1 text-4xl font-bold leading-tight text-[color:var(--color-cyan)]">
               €{total.toLocaleString("en-IE")}
             </div>
           </div>

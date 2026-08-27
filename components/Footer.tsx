@@ -20,7 +20,7 @@ export function Footer() {
             Pricing
           </a>
           <a
-            href="dachimaisashvilidev@gmail.com"
+            href="mailto:dachimaisashvilidev@gmail.com?subject=GhostLeads%20enquiry"
             className="transition hover:text-[color:var(--color-warm)]"
           >
             Contact
