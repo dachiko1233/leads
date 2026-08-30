@@ -1,0 +1,6 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "deploy": {
+    "startCommand": "exec node_modules/.bin/next start -H 0.0.0.0 -p ${PORT:-3000}"
+  }
+}
