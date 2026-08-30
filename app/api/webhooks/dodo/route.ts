@@ -32,7 +32,11 @@ export async function POST(request: Request): Promise<Response> {
       timestamp: request.headers.get("webhook-timestamp") ?? "",
     }) as DodoEvent;
   } catch (err) {
-    console.error("webhook signature verification failed:", err);
+    // This is a public URL, so bots/scanners regularly POST junk here and fail
+    // signature verification. Log a single concise line (no stack trace) so the
+    // logs stay readable while a genuine misconfiguration is still visible.
+    const message = err instanceof Error ? err.message : String(err);
+    console.warn("webhook rejected (invalid signature):", message);
     return NextResponse.json({ error: "Invalid signature." }, { status: 401 });
   }
 
