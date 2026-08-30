@@ -20,7 +20,7 @@ export function HowItWorks() {
   return (
     <section id="how" className="mx-auto max-w-6xl px-6 py-20 text-center">
       <h2 className="text-3xl font-bold sm:text-4xl">How it works</h2>
-      <p className="mx-auto mt-3 max-w-2xl text-[color:var(--color-muted)]">
+      <p className="mx-auto mt-3 max-w-2xl text-muted">
         Three steps from raw public data to a list of clients who need you.
       </p>
 
@@ -28,13 +28,13 @@ export function HowItWorks() {
         {STEPS.map((s) => (
           <li
             key={s.n}
-            className="flex flex-col items-center rounded-2xl border border-[color:var(--color-ink-line)] bg-[color:var(--color-ink-soft)] p-6 text-center"
+            className="flex flex-col items-center rounded-2xl border border-ink-line bg-ink-soft p-6 text-center"
           >
-            <div className="font-display text-4xl font-bold text-[color:var(--color-cyan)]">
+            <div className="font-display text-4xl font-bold text-cyan">
               {s.n}
             </div>
             <h3 className="mt-4 text-xl font-semibold">{s.title}</h3>
-            <p className="mt-2 text-sm text-[color:var(--color-muted)]">
+            <p className="mt-2 text-sm text-muted">
               {s.body}
             </p>
           </li>

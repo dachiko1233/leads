@@ -25,16 +25,16 @@ export function Faq() {
   return (
     <section id="faq" className="mx-auto max-w-3xl px-6 py-20">
       <h2 className="text-3xl font-bold sm:text-4xl">FAQ</h2>
-      <div className="mt-8 divide-y divide-[color:var(--color-ink-line)] rounded-2xl border border-[color:var(--color-ink-line)] bg-[color:var(--color-ink-soft)]">
+      <div className="mt-8 divide-y divide-ink-line rounded-2xl border border-ink-line bg-ink-soft">
         {FAQS.map((f) => (
           <details key={f.q} className="group px-6 py-5">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium">
               {f.q}
-              <span className="text-[color:var(--color-cyan)] transition group-open:rotate-45">
+              <span className="text-cyan transition group-open:rotate-45">
                 +
               </span>
             </summary>
-            <p className="mt-3 text-sm text-[color:var(--color-muted)]">{f.a}</p>
+            <p className="mt-3 text-sm text-muted">{f.a}</p>
           </details>
         ))}
       </div>

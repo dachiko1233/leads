@@ -46,23 +46,23 @@ export function PricingSlider() {
     <section id="pricing" className="mx-auto max-w-3xl px-6 py-20">
       <div className="text-center">
         <h2 className="text-3xl font-bold sm:text-4xl">Pick your package</h2>
-        <p className="mt-3 text-[color:var(--color-muted)]">
+        <p className="mt-3 text-muted">
           €1 per lead. Slide to choose how many you want.
         </p>
       </div>
 
-      <div className="mt-10 rounded-2xl border border-[color:var(--color-ink-line)] bg-[color:var(--color-ink-soft)] p-8">
+      <div className="mt-10 rounded-2xl border border-ink-line bg-ink-soft p-8">
         {/* Live price */}
         <div className="flex items-end justify-between">
           <div>
-            <div className="text-sm text-[color:var(--color-muted)]">Leads</div>
+            <div className="text-sm text-muted">Leads</div>
             <div className="font-display pt-1 text-4xl font-bold leading-tight">
               {leads}
             </div>
           </div>
           <div className="text-right">
-            <div className="text-sm text-[color:var(--color-muted)]">Total</div>
-            <div className="font-display pt-1 text-4xl font-bold leading-tight text-[color:var(--color-cyan)]">
+            <div className="text-sm text-muted">Total</div>
+            <div className="font-display pt-1 text-4xl font-bold leading-tight text-cyan">
               €{total.toLocaleString("en-IE")}
             </div>
           </div>
@@ -83,7 +83,7 @@ export function PricingSlider() {
               background: `linear-gradient(to right, var(--color-cyan) ${pct}%, var(--color-ink-line) ${pct}%)`,
             }}
           />
-          <div className="mt-2 flex justify-between text-xs text-[color:var(--color-muted)]">
+          <div className="mt-2 flex justify-between text-xs text-muted">
             <span>{MIN}</span>
             <span>{MAX}</span>
           </div>
@@ -92,7 +92,7 @@ export function PricingSlider() {
         {/* Order details */}
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           <label className="block">
-            <span className="mb-1 block text-sm text-[color:var(--color-muted)]">
+            <span className="mb-1 block text-sm text-muted">
               Business category
             </span>
             <input
@@ -100,11 +100,11 @@ export function PricingSlider() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="e.g. hair salon"
-              className="w-full rounded-lg border border-[color:var(--color-ink-line)] bg-[color:var(--color-ink)] px-3 py-2 text-sm placeholder:text-[color:var(--color-muted)]/60 focus:border-[color:var(--color-cyan)]"
+              className="w-full rounded-lg border border-ink-line bg-ink px-3 py-2 text-sm placeholder:text-muted/60 focus:border-cyan"
             />
           </label>
           <label className="block">
-            <span className="mb-1 block text-sm text-[color:var(--color-muted)]">
+            <span className="mb-1 block text-sm text-muted">
               Location
             </span>
             <input
@@ -112,11 +112,11 @@ export function PricingSlider() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="e.g. Austin, TX"
-              className="w-full rounded-lg border border-[color:var(--color-ink-line)] bg-[color:var(--color-ink)] px-3 py-2 text-sm placeholder:text-[color:var(--color-muted)]/60 focus:border-[color:var(--color-cyan)]"
+              className="w-full rounded-lg border border-ink-line bg-ink px-3 py-2 text-sm placeholder:text-muted/60 focus:border-cyan"
             />
           </label>
           <label className="block sm:col-span-2">
-            <span className="mb-1 block text-sm text-[color:var(--color-muted)]">
+            <span className="mb-1 block text-sm text-muted">
               Delivery email
             </span>
             <input
@@ -124,13 +124,13 @@ export function PricingSlider() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@agency.com"
-              className="w-full rounded-lg border border-[color:var(--color-ink-line)] bg-[color:var(--color-ink)] px-3 py-2 text-sm placeholder:text-[color:var(--color-muted)]/60 focus:border-[color:var(--color-cyan)]"
+              className="w-full rounded-lg border border-ink-line bg-ink px-3 py-2 text-sm placeholder:text-muted/60 focus:border-cyan"
             />
           </label>
         </div>
 
         {error && (
-          <p role="alert" className="mt-4 text-sm text-[color:var(--color-danger)]">
+          <p role="alert" className="mt-4 text-sm text-danger">
             {error}
           </p>
         )}
@@ -138,11 +138,11 @@ export function PricingSlider() {
         <button
           onClick={handleCheckout}
           disabled={loading}
-          className="mt-6 w-full rounded-full bg-[color:var(--color-cyan)] px-6 py-3 text-base font-semibold text-[color:var(--color-ink)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+          className="mt-6 w-full rounded-full bg-cyan px-6 py-3 text-base font-semibold text-ink transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {loading ? "Starting checkout…" : "Send me my list"}
         </button>
-        <p className="mt-3 text-center text-xs text-[color:var(--color-muted)]">
+        <p className="mt-3 text-center text-xs text-muted">
           Secure checkout via Dodo Payments · delivered by email as leads.csv
         </p>
       </div>

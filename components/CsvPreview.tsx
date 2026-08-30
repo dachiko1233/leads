@@ -71,8 +71,8 @@ function LastPostCell({ value }: { value: string }) {
     <span
       className={
         hot
-          ? "font-semibold text-[color:var(--color-danger)]"
-          : "text-[color:var(--color-muted)]"
+          ? "font-semibold text-danger"
+          : "text-muted"
       }
     >
       {value}
@@ -86,21 +86,21 @@ export function CsvPreview() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h2 className="text-3xl font-bold sm:text-4xl">What you receive</h2>
-          <p className="mt-3 max-w-2xl text-[color:var(--color-muted)]">
+          <p className="mt-3 max-w-2xl text-muted">
             A clean CSV of prioritized leads. The{" "}
-            <span className="text-[color:var(--color-danger)]">Last Post</span> column is
+            <span className="text-danger">Last Post</span> column is
             the hot signal — abandoned and stale pages float to the top.
           </p>
         </div>
-        <span className="rounded-full border border-[color:var(--color-ink-line)] px-4 py-2 text-sm text-[color:var(--color-muted)]">
+        <span className="rounded-full border border-ink-line px-4 py-2 text-sm text-muted">
           leads.csv
         </span>
       </div>
 
-      <div className="mt-8 overflow-x-auto rounded-2xl border border-[color:var(--color-ink-line)] bg-[color:var(--color-ink-soft)]">
-        <table className="w-full min-w-[820px] border-collapse text-left text-sm">
+      <div className="mt-8 overflow-x-auto rounded-2xl border border-ink-line bg-ink-soft">
+        <table className="w-full min-w-205 border-collapse text-left text-sm">
           <thead>
-            <tr className="border-b border-[color:var(--color-ink-line)] text-[color:var(--color-muted)]">
+            <tr className="border-b border-ink-line text-muted">
               {HEADERS.map((h) => (
                 <th key={h} className="whitespace-nowrap px-4 py-3 font-medium">
                   {h}
@@ -112,16 +112,16 @@ export function CsvPreview() {
             {ROWS.map((r) => (
               <tr
                 key={r.name}
-                className="border-b border-[color:var(--color-ink-line)]/60 last:border-0"
+                className="border-b border-ink-line/60 last:border-0"
               >
                 <td className="whitespace-nowrap px-4 py-3 font-medium">{r.name}</td>
-                <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)]">{r.category}</td>
-                <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)]">{r.location}</td>
+                <td className="whitespace-nowrap px-4 py-3 text-muted">{r.category}</td>
+                <td className="whitespace-nowrap px-4 py-3 text-muted">{r.location}</td>
                 <td className="whitespace-nowrap px-4 py-3"><LastPostCell value={r.lastPost} /></td>
-                <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)]">{r.instagram}</td>
-                <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)]">{r.facebook}</td>
-                <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)]">{r.telephone}</td>
-                <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)]">{r.email}</td>
+                <td className="whitespace-nowrap px-4 py-3 text-muted">{r.instagram}</td>
+                <td className="whitespace-nowrap px-4 py-3 text-muted">{r.facebook}</td>
+                <td className="whitespace-nowrap px-4 py-3 text-muted">{r.telephone}</td>
+                <td className="whitespace-nowrap px-4 py-3 text-muted">{r.email}</td>
               </tr>
             ))}
           </tbody>

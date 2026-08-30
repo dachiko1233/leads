@@ -9,20 +9,20 @@ export default function CheckoutSuccess() {
         <span className="font-display text-lg font-bold">NearoLeads</span>
       </div>
 
-      <div className="mt-8 flex h-16 w-16 items-center justify-center rounded-full bg-[color:var(--color-lime)]/15">
-        <span className="text-3xl text-[color:var(--color-lime)]">✓</span>
+      <div className="mt-8 flex h-16 w-16 items-center justify-center rounded-full bg-lime/15">
+        <span className="text-3xl text-lime">✓</span>
       </div>
 
       <h1 className="mt-6 text-3xl font-bold">Payment received</h1>
-      <p className="mt-3 text-[color:var(--color-muted)]">
+      <p className="mt-3 text-muted">
         We&apos;re generating your prioritized lead list now. It will arrive as a{" "}
-        <code className="text-[color:var(--color-warm)]">leads.csv</code> attachment at the
+        <code className="text-warm">leads.csv</code> attachment at the
         email you provided — usually within a few minutes.
       </p>
 
       <Link
         href="/"
-        className="mt-8 rounded-full border border-[color:var(--color-ink-line)] px-6 py-3 text-sm font-semibold transition hover:border-[color:var(--color-cyan)]"
+        className="mt-8 rounded-full border border-ink-line px-6 py-3 text-sm font-semibold transition hover:border-cyan"
       >
         Back to home
       </Link>

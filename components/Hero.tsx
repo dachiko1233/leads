@@ -54,21 +54,21 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden">
       {/* Light beams shooting up behind the headline */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-0 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-[color:var(--color-cyan)] opacity-20 blur-[160px]" />
-        <div className="absolute left-1/2 top-24 h-[30rem] w-40 -translate-x-1/2 -rotate-[24deg] bg-gradient-to-b from-[color:var(--color-cyan)]/40 to-transparent blur-2xl" />
-        <div className="absolute left-1/2 top-24 h-[30rem] w-40 -translate-x-1/2 rotate-[24deg] bg-gradient-to-b from-[color:var(--color-lime)]/30 to-transparent blur-2xl" />
-        <div className="absolute left-1/2 top-24 h-[26rem] w-24 -translate-x-1/2 bg-gradient-to-b from-white/20 to-transparent blur-xl" />
+        <div className="absolute left-1/2 top-0 h-168 w-2xl -translate-x-1/2 rounded-full bg-cyan opacity-20 blur-[160px]" />
+        <div className="absolute left-1/2 top-24 h-120 w-40 -translate-x-1/2 rotate-[-24deg] bg-linear-to-b from-cyan/40 to-transparent blur-2xl" />
+        <div className="absolute left-1/2 top-24 h-120 w-40 -translate-x-1/2 rotate-24 bg-linear-to-b from-lime/30 to-transparent blur-2xl" />
+        <div className="absolute left-1/2 top-24 h-104 w-24 -translate-x-1/2 bg-linear-to-b from-white/20 to-transparent blur-xl" />
       </div>
 
       <div className="relative mx-auto flex max-w-5xl flex-col items-center px-6 pb-24 pt-12 text-center lg:pb-32 lg:pt-16">
-        <span className="inline-flex items-center gap-2 self-start rounded-full border border-[color:var(--color-ink-line)] bg-[color:var(--color-ink-soft)] px-4 py-1.5 text-sm font-medium text-[color:var(--color-muted)]">
-          <span className="dead-dot inline-block h-2 w-2 rounded-full bg-[color:var(--color-lime)]" />
+        <span className="inline-flex items-center gap-2 self-start rounded-full border border-ink-line bg-ink-soft px-4 py-1.5 text-sm font-medium text-muted">
+          <span className="dead-dot inline-block h-2 w-2 rounded-full bg-lime" />
           Hot leads, updated on demand
         </span>
 
         <h1 className="mt-8 text-6xl font-bold leading-[1.02] tracking-tight sm:text-7xl lg:text-8xl">
           Find local businesses that{" "}
-          <span className="bg-gradient-to-r from-[color:var(--color-cyan)] to-[color:var(--color-lime)] bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-cyan to-lime bg-clip-text text-transparent">
             aren&apos;t active
           </span>{" "}
           on social media.
@@ -77,20 +77,20 @@ export function Hero() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <a
             href="#pricing"
-            className="rounded-full bg-[color:var(--color-cyan)] px-8 py-4 text-lg font-semibold text-[color:var(--color-ink)] shadow-lg shadow-[color:var(--color-cyan)]/20 transition hover:-translate-y-0.5 hover:brightness-110"
+            className="rounded-full bg-cyan px-8 py-4 text-lg font-semibold text-ink shadow-lg shadow-cyan/20 transition hover:-translate-y-0.5 hover:brightness-110"
           >
             Order now
           </a>
           <a
             href="#how"
-            className="rounded-full border border-[color:var(--color-ink-line)] px-8 py-4 text-lg font-semibold text-[color:var(--color-warm)] transition hover:-translate-y-0.5 hover:border-[color:var(--color-cyan)]"
+            className="rounded-full border border-ink-line px-8 py-4 text-lg font-semibold text-warm transition hover:-translate-y-0.5 hover:border-cyan"
           >
             How it works
           </a>
         </div>
 
-        <p className="mt-6 text-base text-[color:var(--color-muted)]">
-          <span className="font-semibold text-[color:var(--color-warm)]">
+        <p className="mt-6 text-base text-muted">
+          <span className="font-semibold text-warm">
             €1 per lead.
           </span>{" "}
           No subscription — pick a package, get a CSV.
@@ -98,26 +98,26 @@ export function Hero() {
 
         {/* Floating leads.csv product mockup */}
         <div className="relative mt-20 w-full max-w-6xl lg:-mx-16 lg:w-[calc(100%+8rem)]">
-          <div className="pointer-events-none absolute -inset-x-16 -top-16 bottom-0 -z-10 bg-[color:var(--color-cyan)] opacity-15 blur-[130px]" />
-          <div className="overflow-hidden rounded-3xl border border-[color:var(--color-ink-line)] bg-[color:var(--color-ink-soft)] shadow-2xl shadow-black/70 ring-1 ring-white/5">
+          <div className="pointer-events-none absolute -inset-x-16 -top-16 bottom-0 -z-10 bg-cyan opacity-15 blur-[130px]" />
+          <div className="overflow-hidden rounded-3xl border border-ink-line bg-ink-soft shadow-2xl shadow-black/70 ring-1 ring-white/5">
             {/* window chrome */}
-            <div className="flex items-center gap-2.5 border-b border-[color:var(--color-ink-line)] bg-white/[0.02] px-5 py-4">
-              <span className="h-3.5 w-3.5 rounded-full bg-[color:var(--color-danger)]/70" />
-              <span className="h-3.5 w-3.5 rounded-full bg-[color:var(--color-warm)]/30" />
-              <span className="h-3.5 w-3.5 rounded-full bg-[color:var(--color-lime)]/70" />
-              <span className="ml-3 text-sm font-medium text-[color:var(--color-warm)]">
+            <div className="flex items-center gap-2.5 border-b border-ink-line bg-white/2 px-5 py-4">
+              <span className="h-3.5 w-3.5 rounded-full bg-danger/70" />
+              <span className="h-3.5 w-3.5 rounded-full bg-warm/30" />
+              <span className="h-3.5 w-3.5 rounded-full bg-lime/70" />
+              <span className="ml-3 text-sm font-medium text-warm">
                 leads.csv
               </span>
-              <span className="ml-auto rounded-full border border-[color:var(--color-ink-line)] px-3 py-1 text-xs text-[color:var(--color-muted)]">
+              <span className="ml-auto rounded-full border border-ink-line px-3 py-1 text-xs text-muted">
                 {PREVIEW_ROWS.length} of 250 rows
               </span>
             </div>
 
             {/* table */}
             <div className="overflow-x-auto text-left">
-              <table className="w-full min-w-[720px] border-collapse text-sm sm:text-base">
+              <table className="w-full min-w-180 border-collapse text-sm sm:text-base">
                 <thead>
-                  <tr className="border-b border-[color:var(--color-ink-line)] text-xs uppercase tracking-wide text-[color:var(--color-muted)] sm:text-sm">
+                  <tr className="border-b border-ink-line text-xs uppercase tracking-wide text-muted sm:text-sm">
                     <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
                       Name
                     </th>
@@ -142,24 +142,24 @@ export function Hero() {
                   {PREVIEW_ROWS.map((r) => (
                     <tr
                       key={r.name}
-                      className="border-b border-[color:var(--color-ink-line)]/60 transition-colors last:border-0 hover:bg-white/[0.02]"
+                      className="border-b border-ink-line/60 transition-colors last:border-0 hover:bg-white/2"
                     >
-                      <td className="whitespace-nowrap px-4 py-3 font-semibold text-[color:var(--color-warm)] sm:px-6 sm:py-4">
+                      <td className="whitespace-nowrap px-4 py-3 font-semibold text-warm sm:px-6 sm:py-4">
                         {r.name}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)] sm:px-6 sm:py-4">
+                      <td className="whitespace-nowrap px-4 py-3 text-muted sm:px-6 sm:py-4">
                         {r.category}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)] sm:px-6 sm:py-4">
+                      <td className="whitespace-nowrap px-4 py-3 text-muted sm:px-6 sm:py-4">
                         {r.location}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 font-medium text-[color:var(--color-danger)] sm:px-6 sm:py-4">
+                      <td className="whitespace-nowrap px-4 py-3 font-medium text-danger sm:px-6 sm:py-4">
                         {r.lastPost}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)] sm:px-6 sm:py-4">
+                      <td className="whitespace-nowrap px-4 py-3 text-muted sm:px-6 sm:py-4">
                         {r.phone}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-[color:var(--color-muted)] sm:px-6 sm:py-4">
+                      <td className="whitespace-nowrap px-4 py-3 text-muted sm:px-6 sm:py-4">
                         {r.email}
                       </td>
                     </tr>

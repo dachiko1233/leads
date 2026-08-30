@@ -2,7 +2,7 @@ import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[color:var(--color-ink-line)]">
+    <footer className="border-t border-ink-line">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 py-10 sm:flex-row">
         <a
           href="#top"
@@ -12,21 +12,21 @@ export function Footer() {
           <Logo />
           <span className="font-display font-bold">GhostLeads</span>
         </a>
-        <nav className="flex items-center gap-6 text-sm text-[color:var(--color-muted)]">
+        <nav className="flex items-center gap-6 text-sm text-muted">
           <a
             href="#pricing"
-            className="transition hover:text-[color:var(--color-warm)]"
+            className="transition hover:text-warm"
           >
             Pricing
           </a>
           <a
             href="mailto:dachimaisashvilidev@gmail.com?subject=GhostLeads%20enquiry"
-            className="transition hover:text-[color:var(--color-warm)]"
+            className="transition hover:text-warm"
           >
             Contact
           </a>
         </nav>
-        <p className="text-xs text-[color:var(--color-muted)]">
+        <p className="text-xs text-muted">
           © {new Date().getFullYear()} GhostLeads
         </p>
       </div>

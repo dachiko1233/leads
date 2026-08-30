@@ -10,13 +10,13 @@ export default function CheckoutCancel() {
       </div>
 
       <h1 className="mt-8 text-3xl font-bold">Checkout canceled</h1>
-      <p className="mt-3 text-[color:var(--color-muted)]">
+      <p className="mt-3 text-muted">
         No charge was made. You can pick a package again whenever you&apos;re ready.
       </p>
 
       <Link
         href="/#pricing"
-        className="mt-8 rounded-full bg-[color:var(--color-cyan)] px-6 py-3 text-sm font-semibold text-[color:var(--color-ink)] transition hover:brightness-110"
+        className="mt-8 rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink transition hover:brightness-110"
       >
         Back to pricing
       </Link>
