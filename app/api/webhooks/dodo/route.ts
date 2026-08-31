@@ -24,17 +24,25 @@ interface DodoEvent {
 export async function POST(request: Request): Promise<Response> {
   const rawBody = await request.text();
 
+  const signature = request.headers.get("webhook-signature");
+
+  // This is a public URL, so bots/scanners constantly POST junk here. A genuine
+  // Dodo webhook always carries a `webhook-signature` header; requests without
+  // one are pure noise, so reject them silently and never log.
+  if (!signature) {
+    return NextResponse.json({ error: "Invalid signature." }, { status: 401 });
+  }
+
   let event: DodoEvent;
   try {
     event = verifyDodoWebhook(rawBody, {
       id: request.headers.get("webhook-id") ?? "",
-      signature: request.headers.get("webhook-signature") ?? "",
+      signature,
       timestamp: request.headers.get("webhook-timestamp") ?? "",
     }) as DodoEvent;
   } catch (err) {
-    // This is a public URL, so bots/scanners regularly POST junk here and fail
-    // signature verification. Log a single concise line (no stack trace) so the
-    // logs stay readable while a genuine misconfiguration is still visible.
+    // A signed-but-invalid payload is worth a single concise line (no stack
+    // trace) so a real misconfiguration stays visible while logs stay readable.
     const message = err instanceof Error ? err.message : String(err);
     console.warn("webhook rejected (invalid signature):", message);
     return NextResponse.json({ error: "Invalid signature." }, { status: 401 });

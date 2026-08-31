@@ -6,6 +6,7 @@ const PREVIEW_ROWS = [
     lastPost: "No posts",
     phone: "+1 512-555-0142",
     email: "hello@juniperco.com",
+    website: "juniperco.com",
   },
   {
     name: "Blue Agave Cantina",
@@ -14,6 +15,7 @@ const PREVIEW_ROWS = [
     lastPost: "62 days ago",
     phone: "+1 720-555-0199",
     email: "—",
+    website: "blueagavecantina.com",
   },
   {
     name: "Barton Springs Bikes",
@@ -22,6 +24,7 @@ const PREVIEW_ROWS = [
     lastPost: "No posts",
     phone: "+1 503-555-0188",
     email: "ride@bartonspringsbikes.com",
+    website: "—",
   },
   {
     name: "East Side Dental Care",
@@ -30,6 +33,7 @@ const PREVIEW_ROWS = [
     lastPost: "Unknown",
     phone: "+1 615-555-0110",
     email: "front@eastsidedental.com",
+    website: "eastsidedental.com",
   },
   {
     name: "Maple & Thread",
@@ -38,6 +42,7 @@ const PREVIEW_ROWS = [
     lastPost: "120 days ago",
     phone: "+1 312-555-0155",
     email: "—",
+    website: "mapleandthread.co",
   },
   {
     name: "Lone Star Detailing",
@@ -46,6 +51,7 @@ const PREVIEW_ROWS = [
     lastPost: "72 days ago",
     phone: "+1 602-555-0121",
     email: "book@lonestardetail.com",
+    website: "—",
   },
 ];
 
@@ -90,10 +96,8 @@ export function Hero() {
         </div>
 
         <p className="mt-6 text-base text-muted">
-          <span className="font-semibold text-warm">
-            €1 per lead.
-          </span>{" "}
-          No subscription — pick a package, get a CSV.
+          <span className="font-semibold text-warm">€1 per lead.</span> No
+          subscription — pick a package, get a CSV.
         </p>
 
         {/* Floating leads.csv product mockup */}
@@ -136,6 +140,9 @@ export function Hero() {
                     <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
                       Email
                     </th>
+                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
+                      Website
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -161,6 +168,9 @@ export function Hero() {
                       </td>
                       <td className="whitespace-nowrap px-4 py-3 text-muted sm:px-6 sm:py-4">
                         {r.email}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-3 text-muted sm:px-6 sm:py-4">
+                        {r.website}
                       </td>
                     </tr>
                   ))}
