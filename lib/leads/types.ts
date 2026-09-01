@@ -17,6 +17,7 @@ export interface Business {
 export interface SocialPresence {
   instagram: string | null;
   facebook: string | null;
+  linkedin: string | null;
   email: string | null;
   /**
    * Recency of the last social post.
@@ -34,6 +35,7 @@ export interface Lead {
   lastPost: string;
   instagram: string | null;
   facebook: string | null;
+  linkedin: string | null;
   telephone: string | null;
   email: string | null;
   website: string | null;

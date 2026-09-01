@@ -9,6 +9,7 @@ const COLUMNS: Array<{ header: string; get: (l: Lead) => string | number | null 
   { header: "Last Post", get: (l) => l.lastPost },
   { header: "Instagram", get: (l) => l.instagram },
   { header: "Facebook", get: (l) => l.facebook },
+  { header: "LinkedIn", get: (l) => l.linkedin },
   { header: "Telephone", get: (l) => l.telephone },
   { header: "Email", get: (l) => l.email },
   { header: "Website", get: (l) => l.website },

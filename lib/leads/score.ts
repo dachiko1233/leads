@@ -66,6 +66,7 @@ export function toLead(business: Business, social: SocialPresence): Lead {
     lastPost: social.lastPost,
     instagram: social.instagram,
     facebook: social.facebook,
+    linkedin: social.linkedin,
     telephone: business.telephone,
     email: social.email,
     website: business.website,
