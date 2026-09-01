@@ -10,6 +10,7 @@
 //     webhook-timestamp.
 // Docs: https://docs.dodopayments.com/developer-resources/integration-guide
 
+import { createHash } from "crypto";
 import DodoPayments from "dodopayments";
 import { Webhook } from "standardwebhooks";
 
@@ -39,15 +40,38 @@ export function verifyDodoWebhook(
   rawBody: string,
   headers: { id: string; signature: string; timestamp: string },
 ): unknown {
-  const secret = process.env.DODO_WEBHOOK_SECRET;
-  if (!secret) {
+  const rawSecret = process.env.DODO_WEBHOOK_SECRET;
+  if (!rawSecret) {
     throw new Error("DODO_WEBHOOK_SECRET is not set.");
   }
+  // Defensive: env values pasted into dashboards (Railway etc.) often carry a
+  // trailing newline or surrounding quotes, which corrupts the derived key and
+  // makes every signature "not match". Strip them before use.
+  const secret = rawSecret.trim().replace(/^["']|["']$/g, "");
+
   const webhook = new Webhook(secret);
-  webhook.verify(rawBody, {
-    "webhook-id": headers.id,
-    "webhook-signature": headers.signature,
-    "webhook-timestamp": headers.timestamp,
-  });
+  try {
+    webhook.verify(rawBody, {
+      "webhook-id": headers.id,
+      "webhook-signature": headers.signature,
+      "webhook-timestamp": headers.timestamp,
+    });
+  } catch (err) {
+    // Safe diagnostic: none of this exposes the secret. A `secretFingerprint`
+    // (hash prefix) lets you compare against the value in the Dodo dashboard —
+    // if the fingerprints differ, Railway simply has the wrong/rotated secret
+    // (commonly a test-mode secret on a live endpoint, or vice versa).
+    console.warn("dodo webhook verify failed:", {
+      reason: err instanceof Error ? err.message : String(err),
+      secretFingerprint: createHash("sha256").update(secret).digest("hex").slice(0, 10),
+      secretLen: secret.length,
+      hadWhitespaceOrQuotes: secret !== rawSecret,
+      bodyLen: rawBody.length,
+      hasId: Boolean(headers.id),
+      hasSignature: Boolean(headers.signature),
+      hasTimestamp: Boolean(headers.timestamp),
+    });
+    throw err;
+  }
   return JSON.parse(rawBody);
 }
