@@ -10,7 +10,7 @@
 // IMPORTANT: we must read the RAW request body for signature verification, so
 // this route does its own JSON parsing after verifying.
 
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { verifyDodoWebhook } from "@/lib/dodo";
 import { sendOrderNotificationEmail, sendOrderConfirmationEmail } from "@/lib/email";
 
@@ -28,7 +28,40 @@ interface DodoEvent {
 }
 
 export async function POST(request: Request): Promise<Response> {
-  const rawBody = await request.text();
+ try {
+  // Read the request framing up front so we can report it if the body read
+  // fails or the payload arrives truncated.
+  const contentType = request.headers.get("content-type");
+  const contentLength = request.headers.get("content-length");
+
+  // Read the RAW body inside its own try/catch. A client that drops the
+  // connection mid-transfer (the ECONNRESET / "aborted" case) throws here
+  // rather than returning a partial string, so we surface it explicitly
+  // instead of letting the connection abort with no HTTP response.
+  let rawBody: string;
+  try {
+    rawBody = await request.text();
+  } catch (err) {
+    console.error("webhook: failed to read request body (aborted/incomplete):", {
+      error: err instanceof Error ? err.message : String(err),
+      contentType,
+      contentLength,
+    });
+    // The body is gone — nothing to verify. Reply so the socket closes cleanly.
+    return NextResponse.json({ error: "Could not read request body." }, { status: 400 });
+  }
+
+  // TEMPORARY DIAGNOSTIC — how many bytes we actually read vs what was
+  // declared. A mismatch means the body arrived incomplete (a symptom of the
+  // connection being reset mid-request).
+  const bytesRead = Buffer.byteLength(rawBody, "utf8");
+  if (contentLength && Number(contentLength) !== bytesRead) {
+    console.warn("webhook: body size mismatch (possible truncated body):", {
+      declaredContentLength: contentLength,
+      bytesRead,
+      contentType,
+    });
+  }
 
   const signature = request.headers.get("webhook-signature");
 
@@ -100,35 +133,52 @@ export async function POST(request: Request): Promise<Response> {
   const paymentId = event.data?.payment_id ?? "";
   const timestamp = event.data?.created_at ?? new Date().toISOString();
 
-  // Manual fulfillment: notify the admin and confirm to the customer. Never
-  // throw back to Dodo on our own failure — log instead so the delivery can be
-  // retried/investigated. Send both independently so one failing doesn't block
-  // the other.
-  const results = await Promise.allSettled([
-    sendOrderNotificationEmail({
-      customerEmail: email,
-      query,
-      location,
-      leadCount,
-      amountPaid,
-      paymentId,
-      timestamp,
-    }),
-    sendOrderConfirmationEmail(email),
-  ]);
+  // Respond to Dodo IMMEDIATELY, then do the slow work (two external Resend API
+  // calls) after the response is sent. Sending email inline kept the connection
+  // open for the duration of two network round-trips; if the client gave up
+  // waiting the socket was reset (ECONNRESET) and Dodo saw a failed delivery.
+  // `after()` runs the callback once the response has flushed — Next keeps the
+  // invocation alive until it completes, so nothing is lost.
+  after(async () => {
+    // Manual fulfillment: notify the admin and confirm to the customer. Send
+    // both independently so one failing doesn't block the other. Errors here
+    // are logged, never thrown — the 200 has already been sent.
+    const results = await Promise.allSettled([
+      sendOrderNotificationEmail({
+        customerEmail: email,
+        query,
+        location,
+        leadCount,
+        amountPaid,
+        paymentId,
+        timestamp,
+      }),
+      sendOrderConfirmationEmail(email),
+    ]);
 
-  results.forEach((result, i) => {
-    if (result.status === "rejected") {
-      const which = i === 0 ? "admin notification" : "customer confirmation";
-      console.error(`webhook: ${which} email failed:`, result.reason);
+    results.forEach((result, i) => {
+      if (result.status === "rejected") {
+        const which = i === 0 ? "admin notification" : "customer confirmation";
+        console.error(`webhook: ${which} email failed:`, result.reason);
+      }
+    });
+
+    if (results.every((r) => r.status === "fulfilled")) {
+      console.log(`Order received: ${leadCount} leads for ${email} — admin notified.`);
     }
   });
 
-  if (results.every((r) => r.status === "fulfilled")) {
-    console.log(`Order received: ${leadCount} leads for ${email} — admin notified.`);
-  }
-
   return NextResponse.json({ received: true });
+ } catch (err) {
+  // Top-level safety net: any unexpected throw still returns a real HTTP
+  // response instead of leaving the connection to abort. A 500 tells Dodo to
+  // retry the delivery.
+  console.error(
+    "webhook: unhandled error:",
+    err instanceof Error ? (err.stack ?? err.message) : String(err),
+  );
+  return NextResponse.json({ error: "Internal error." }, { status: 500 });
+ }
 }
 
 /** Format a lowest-unit (cents) amount as a currency string, e.g. 5000 -> "€50.00". */
