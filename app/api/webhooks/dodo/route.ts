@@ -39,18 +39,39 @@ export async function POST(request: Request): Promise<Response> {
     return NextResponse.json({ error: "Invalid signature." }, { status: 401 });
   }
 
+  const webhookTimestamp = request.headers.get("webhook-timestamp") ?? "";
+
   let event: DodoEvent;
   try {
     event = verifyDodoWebhook(rawBody, {
       id: request.headers.get("webhook-id") ?? "",
       signature,
-      timestamp: request.headers.get("webhook-timestamp") ?? "",
+      timestamp: webhookTimestamp,
     }) as DodoEvent;
   } catch (err) {
     // A signed-but-invalid payload is worth a single concise line (no stack
     // trace) so a real misconfiguration stays visible while logs stay readable.
     const message = err instanceof Error ? err.message : String(err);
     console.warn("webhook rejected (invalid signature):", message);
+
+    // TEMPORARY DIAGNOSTIC — remove once the webhook failure is diagnosed.
+    // Distinguishes a stale-timestamp rejection from a true signature mismatch,
+    // and surfaces the request framing + which environment we're running as.
+    // Nothing here exposes the secret or payload contents.
+    const nowSeconds = Math.floor(Date.now() / 1000);
+    const receivedSeconds = Number.parseInt(webhookTimestamp, 10);
+    const deltaSeconds = Number.isNaN(receivedSeconds) ? null : nowSeconds - receivedSeconds;
+    console.warn("webhook verify DIAGNOSTIC:", {
+      reason: message,
+      webhookTimestamp,
+      serverTimeISO: new Date().toISOString(),
+      serverTimeUnix: nowSeconds,
+      deltaSeconds, // (now - webhook-timestamp); positive means the request is old
+      contentType: request.headers.get("content-type"),
+      contentLength: request.headers.get("content-length"),
+      dodoEnvironment: process.env.DODO_ENVIRONMENT === "live" ? "live" : "test",
+    });
+
     return NextResponse.json({ error: "Invalid signature." }, { status: 401 });
   }
 
