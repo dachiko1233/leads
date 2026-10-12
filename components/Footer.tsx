@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Logo } from "./Logo";
 
 export function Footer() {
@@ -14,7 +15,7 @@ export function Footer() {
         </a>
         <nav className="flex items-center justify-center gap-6 text-sm text-muted">
           <a
-            href="mailto:dachimaisashvilidev@gmail.com?subject=GhostLeads%20enquiry"
+            href="mailto:dachi@getghostleads.com?subject=GhostLeads%20enquiry"
             className="flex items-center gap-1.5 transition hover:text-warm"
             aria-label="Contact GhostLeads by email"
           >
@@ -49,6 +50,22 @@ export function Footer() {
         <p className="text-xs text-muted">
           © {new Date().getFullYear()} GhostLeads
         </p>
+      </div>
+      <div className="mx-auto max-w-6xl border-t border-ink-line px-6 py-5">
+        <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted">
+          <Link href="/contact" className="transition hover:text-warm">
+            Contact
+          </Link>
+          <Link href="/refunds" className="transition hover:text-warm">
+            Refund policy
+          </Link>
+          <Link href="/terms" className="transition hover:text-warm">
+            Terms of Service
+          </Link>
+          <Link href="/privacy" className="transition hover:text-warm">
+            Privacy notice
+          </Link>
+        </nav>
       </div>
     </footer>
   );

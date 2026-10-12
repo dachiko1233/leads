@@ -1,9 +1,10 @@
 // POST /api/checkout — create a Dodo Payments checkout session for a lead package.
 //
-// Pricing is €1 per lead and is fixed *server-side*: we pass the exact total to
+// Pricing is €100 per lead and is fixed *server-side*: we pass the exact total to
 // Dodo as `product_cart[].amount` (in cents). Because the amount is set, the
 // customer cannot edit the price on Dodo's hosted page, and currency selection
-// is disabled so the charge stays in EUR.
+// is disabled so the charge stays in EUR. This is a one-time charge, not a
+// subscription.
 
 import { NextResponse } from "next/server";
 import { getDodoClient, nameFromEmail } from "@/lib/dodo";
@@ -15,12 +16,12 @@ interface CheckoutBody {
   location?: string;
 }
 
-// Pricing range: 20–1000 leads at €1 each. The Dodo dynamic-price product must be
-// configured to match in the Dodo dashboard: min price €20, max price €1000
-// (leads * €1). Keep these in sync with the frontend slider and the Dodo product.
-const MIN_LEADS = 20;
-const MAX_LEADS = 1000;
-const PRICE_PER_LEAD_CENTS = 100; // €1.00 per lead, in the currency's lowest unit.
+// Pricing range: 1–50 leads at €100 each. The Dodo dynamic-price product must be
+// configured to match in the Dodo dashboard: min price €100, max price €5000
+// (leads * €100). Keep these in sync with the frontend slider and the Dodo product.
+const MIN_LEADS = 1;
+const MAX_LEADS = 50;
+const PRICE_PER_LEAD_CENTS = 10000; // €100.00 per lead, in the currency's lowest unit.
 
 export async function POST(request: Request): Promise<Response> {
   let body: CheckoutBody;
@@ -68,7 +69,7 @@ export async function POST(request: Request): Promise<Response> {
         {
           product_id: productId,
           quantity: 1,
-          // (1) Fix the total server-side: N leads × €1 = N * 100 cents.
+          // (1) Fix the total server-side: N leads × €100 = N * 10000 cents.
           // (2) Because `amount` is set on a pay-what-you-want product, the customer
           //     cannot change the price on the hosted checkout page.
           amount: leads * PRICE_PER_LEAD_CENTS,

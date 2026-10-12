@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-09-28T10:30:49.676Z",
+        "reason": "email HTML templates need web-safe fonts with Arial fallback; Inter+Arial is domain-appropriate for email, not web UI"
+      }
+    ]
+  }
+}

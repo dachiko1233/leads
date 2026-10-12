@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-const MIN = 20;
-const MAX = 1000;
-const STEP = 10;
-const PRICE_PER_LEAD = 1; // €1 / lead
+const MIN = 1;
+const MAX = 5;
+const STEP = 1;
+const PRICE_PER_LEAD = 100; // €100 / lead
 
 export function PricingSlider() {
-  const [leads, setLeads] = useState(100);
+  const [leads, setLeads] = useState(5);
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");
@@ -47,7 +47,7 @@ export function PricingSlider() {
       <div className="text-center">
         <h2 className="text-3xl font-bold sm:text-4xl">Pick your package</h2>
         <p className="mt-3 text-muted">
-          €1 per lead. Slide to choose how many you want.
+          €100 per hot lead. Slide to choose how many you want. One-time payment.
         </p>
       </div>
 
@@ -143,7 +143,7 @@ export function PricingSlider() {
           {loading ? "Starting checkout…" : "Send me my list"}
         </button>
         <p className="mt-3 text-center text-xs text-muted">
-          Secure checkout via Dodo Payments · delivered by email as leads.csv
+          Secure one-time checkout via Dodo Payments · delivered by email as leads.csv
         </p>
       </div>
     </section>

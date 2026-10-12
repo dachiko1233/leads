@@ -69,15 +69,18 @@ export function Hero() {
       <div className="relative mx-auto flex max-w-5xl flex-col items-center px-6 pb-24 pt-12 text-center lg:pb-32 lg:pt-16">
         <span className="inline-flex items-center gap-2 self-start rounded-full border border-ink-line bg-ink-soft px-4 py-1.5 text-sm font-medium text-muted">
           <span className="dead-dot inline-block h-2 w-2 rounded-full bg-lime" />
-          Hot leads, updated on demand
+          Fresh leads, on demand
         </span>
 
         <h1 className="mt-8 text-6xl font-bold leading-[1.02] tracking-tight sm:text-7xl lg:text-8xl">
-          Find local businesses that{" "}
+          Local businesses that{" "}
           <span className="bg-linear-to-r from-cyan to-lime bg-clip-text text-transparent">
-            aren&apos;t active
+            need social media,
           </span>{" "}
-          on social media.
+          looking for a{" "}
+          <span className="bg-linear-to-r from-cyan to-lime bg-clip-text text-transparent">
+            marketing company
+          </span>
         </h1>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -88,16 +91,18 @@ export function Hero() {
             Order now
           </a>
           <a
-            href="#how"
+            href="#why"
             className="rounded-full border border-ink-line px-8 py-4 text-lg font-semibold text-warm transition hover:-translate-y-0.5 hover:border-cyan"
           >
-            How it works
+            Why us
           </a>
         </div>
 
         <p className="mt-6 text-base text-muted">
-          <span className="font-semibold text-warm">€1 per lead.</span> No
-          subscription — pick a package, get a CSV.
+          <span className="font-semibold text-warm">
+            We call them. You close them.
+          </span>{" "}
+          Pay once — €100 per lead.
         </p>
 
         {/* Floating leads.csv product mockup */}
@@ -118,30 +123,27 @@ export function Hero() {
             </div>
 
             {/* table */}
-            <div className="overflow-x-auto text-left">
-              <table className="w-full min-w-180 border-collapse text-sm sm:text-base">
+            <div className="text-left">
+              <table className="w-full table-fixed border-collapse text-sm sm:text-base">
                 <thead>
                   <tr className="border-b border-ink-line text-xs uppercase tracking-wide text-muted sm:text-sm">
-                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
+                    <th className="w-[26%] px-4 py-3 text-left font-medium sm:w-[22%] sm:px-6 sm:py-4">
                       Name
                     </th>
-                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
+                    <th className="hidden w-[18%] px-4 py-3 text-left font-medium sm:table-cell sm:px-6 sm:py-4">
                       Category
                     </th>
-                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
+                    <th className="hidden w-[15%] px-4 py-3 text-left font-medium md:table-cell sm:px-6 sm:py-4">
                       Location
                     </th>
-                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
+                    <th className="w-[20%] px-4 py-3 text-left font-medium sm:w-[14%] sm:px-6 sm:py-4">
                       Last Post
                     </th>
-                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
+                    <th className="hidden w-[17%] px-4 py-3 text-left font-medium lg:table-cell sm:px-6 sm:py-4">
                       Phone
                     </th>
-                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
+                    <th className="hidden w-[20%] px-4 py-3 text-left font-medium xl:table-cell sm:px-6 sm:py-4">
                       Email
-                    </th>
-                    <th className="whitespace-nowrap px-4 py-3 text-left font-medium sm:px-6 sm:py-4">
-                      Website
                     </th>
                   </tr>
                 </thead>
@@ -151,26 +153,23 @@ export function Hero() {
                       key={r.name}
                       className="border-b border-ink-line/60 transition-colors last:border-0 hover:bg-white/2"
                     >
-                      <td className="whitespace-nowrap px-4 py-3 font-semibold text-warm sm:px-6 sm:py-4">
+                      <td className="truncate px-4 py-3 font-semibold text-warm sm:px-6 sm:py-4">
                         {r.name}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-muted sm:px-6 sm:py-4">
+                      <td className="hidden truncate px-4 py-3 text-muted sm:table-cell sm:px-6 sm:py-4">
                         {r.category}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-muted sm:px-6 sm:py-4">
+                      <td className="hidden truncate px-4 py-3 text-muted md:table-cell sm:px-6 sm:py-4">
                         {r.location}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 font-medium text-danger sm:px-6 sm:py-4">
+                      <td className="truncate px-4 py-3 font-medium text-danger sm:px-6 sm:py-4">
                         {r.lastPost}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-muted sm:px-6 sm:py-4">
+                      <td className="hidden truncate px-4 py-3 text-muted lg:table-cell sm:px-6 sm:py-4">
                         {r.phone}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-muted sm:px-6 sm:py-4">
+                      <td className="hidden truncate px-4 py-3 text-muted xl:table-cell sm:px-6 sm:py-4">
                         {r.email}
-                      </td>
-                      <td className="whitespace-nowrap px-4 py-3 text-muted sm:px-6 sm:py-4">
-                        {r.website}
                       </td>
                     </tr>
                   ))}

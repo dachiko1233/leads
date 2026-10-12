@@ -10,7 +10,7 @@
 //     webhook-timestamp.
 // Docs: https://docs.dodopayments.com/developer-resources/integration-guide
 
-import { createHash } from "crypto";
+import { createHash, createHmac } from "crypto";
 import DodoPayments from "dodopayments";
 import { Webhook } from "standardwebhooks";
 
@@ -75,6 +75,49 @@ export function verifyDodoWebhook(
       hasSignature: Boolean(headers.signature),
       hasTimestamp: Boolean(headers.timestamp),
     });
+
+    // TEMPORARY SIGNATURE DIAGNOSTIC — remove once the mismatch is understood.
+    // The secret is confirmed correct and the body/timestamp are intact, yet the
+    // HMAC won't match. To find out WHY, recompute the signature ourselves under
+    // every plausible key derivation and see which (if any) matches what Dodo
+    // sent. Signatures are per-message MACs, not secrets, so logging them is
+    // safe. The signed content per Standard Webhooks is `${id}.${timestamp}.${body}`.
+    try {
+      const signedContent = `${headers.id}.${headers.timestamp}.${rawBody}`;
+      const noPrefix = secret.startsWith("whsec_") ? secret.slice(6) : secret;
+      const candidates: Record<string, string> = {
+        // What standardwebhooks does: HMAC key = base64-decode(secret w/o whsec_).
+        base64DecodedKey: createHmac("sha256", Buffer.from(noPrefix, "base64"))
+          .update(signedContent)
+          .digest("base64"),
+        // If Dodo used the raw secret string (minus prefix) as UTF-8 key bytes.
+        rawStringKey: createHmac("sha256", Buffer.from(noPrefix, "utf8"))
+          .update(signedContent)
+          .digest("base64"),
+        // If Dodo used the FULL secret (incl. whsec_) as UTF-8 key bytes.
+        fullStringKey: createHmac("sha256", Buffer.from(secret, "utf8"))
+          .update(signedContent)
+          .digest("base64"),
+      };
+      // Received signatures: header is space-delimited "v1,<sig> v1,<sig2>".
+      const received = headers.signature
+        .split(" ")
+        .map((s) => s.split(",")[1])
+        .filter(Boolean);
+      const matched = Object.entries(candidates).find(([, sig]) => received.includes(sig));
+      console.warn("dodo webhook SIGNATURE DIAGNOSTIC:", {
+        receivedSignatures: received,
+        computed: candidates,
+        matchedScheme: matched ? matched[0] : "none",
+        idLen: headers.id.length,
+        timestamp: headers.timestamp,
+        bodyFirst16: rawBody.slice(0, 16),
+        bodyLast16: rawBody.slice(-16),
+      });
+    } catch (diagErr) {
+      console.warn("dodo webhook SIGNATURE DIAGNOSTIC failed:", String(diagErr));
+    }
+
     throw err;
   }
 }
