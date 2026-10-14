@@ -23,7 +23,7 @@ const STEPS: Step[] = [
   {
     accent: "cyan",
     title: "You place your order",
-    body: "Pick how many leads you want and pay — €100 per lead. That's it to get started.",
+    body: "Pick how many leads you want and pay — €500 per lead. That's it to get started.",
     icon: (
       <svg {...iconProps}>
         <path d="M6 6h15l-1.5 9h-12z" />

@@ -23,7 +23,7 @@ export const legal = {
   processor: "Dodo Payments",
 
   /** Price per lead, in euros. Keep in sync with PricingSlider. */
-  pricePerLead: 100,
+  pricePerLead: 500,
 
   /** Date these policies were last reviewed. EDIT when you change them. */
   lastUpdated: "12 October 2026",

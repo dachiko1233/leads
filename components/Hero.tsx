@@ -102,7 +102,7 @@ export function Hero() {
           <span className="font-semibold text-warm">
             We call them. You close them.
           </span>{" "}
-          Pay once — €100 per lead.
+          Pay once — €500 per lead.
         </p>
 
         {/* Floating leads.csv product mockup */}

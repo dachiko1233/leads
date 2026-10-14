@@ -5,7 +5,7 @@ import { useState } from "react";
 const MIN = 1;
 const MAX = 5;
 const STEP = 1;
-const PRICE_PER_LEAD = 100; // €100 / lead
+const PRICE_PER_LEAD = 500; // €500 / lead
 
 export function PricingSlider() {
   const [leads, setLeads] = useState(5);
@@ -47,7 +47,7 @@ export function PricingSlider() {
       <div className="text-center">
         <h2 className="text-3xl font-bold sm:text-4xl">Pick your package</h2>
         <p className="mt-3 text-muted">
-          €100 per hot lead. Slide to choose how many you want. One-time payment.
+          €500 per hot lead. Slide to choose how many you want. One-time payment.
         </p>
       </div>
 
