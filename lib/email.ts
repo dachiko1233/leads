@@ -47,6 +47,7 @@ export async function sendLeadsEmail({
 }
 
 export interface OrderNotification {
+  customerName: string;
   customerEmail: string;
   query: string;
   location: string;
@@ -123,9 +124,10 @@ function buildOrderNotificationHtml(order: OrderNotification): string {
     <div style="font-family: Inter, Arial, sans-serif; color: #0B1120;">
       <h2 style="margin:0 0 12px;">New paid order — fulfill manually</h2>
       <table style="border-collapse:collapse; font-size:14px;">
+        ${row("Customer name", order.customerName || "—")}
         ${row("Customer email", order.customerEmail)}
-        ${row("Category / query", order.query)}
-        ${row("Location / city", order.location || "—")}
+        ${row("Business category", order.query)}
+        ${row("Country / location", order.location || "—")}
         ${row("Leads ordered", String(order.leadCount))}
         ${row("Amount paid", order.amountPaid)}
         ${row("Payment ID", order.paymentId || "—")}

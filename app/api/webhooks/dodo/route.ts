@@ -11,7 +11,7 @@
 // this route does its own JSON parsing after verifying.
 
 import { NextResponse, after } from "next/server";
-import { verifyDodoWebhook } from "@/lib/dodo";
+import { verifyDodoWebhook, nameFromEmail } from "@/lib/dodo";
 import { sendOrderNotificationEmail, sendOrderConfirmationEmail } from "@/lib/email";
 
 // A subset of the Dodo webhook payload shape we rely on.
@@ -19,7 +19,7 @@ interface DodoEvent {
   type?: string;
   data?: {
     metadata?: Record<string, string>;
-    customer?: { email?: string };
+    customer?: { email?: string; name?: string };
     payment_id?: string;
     total_amount?: number; // in the currency's lowest unit (cents)
     currency?: string;
@@ -115,6 +115,9 @@ export async function POST(request: Request): Promise<Response> {
 
   const metadata = event.data?.metadata ?? {};
   const email = metadata.email ?? event.data?.customer?.email ?? "";
+  // Prefer the real name the customer entered on Dodo's hosted checkout; fall
+  // back to a name derived from the email local-part if Dodo didn't send one.
+  const customerName = event.data?.customer?.name?.trim() || (email ? nameFromEmail(email) : "");
   const query = metadata.query ?? "";
   const location = metadata.location ?? "";
   const leadCount = Number(metadata.leads) || 0;
@@ -145,6 +148,7 @@ export async function POST(request: Request): Promise<Response> {
     // are logged, never thrown — the 200 has already been sent.
     const results = await Promise.allSettled([
       sendOrderNotificationEmail({
+        customerName,
         customerEmail: email,
         query,
         location,
