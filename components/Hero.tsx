@@ -91,10 +91,10 @@ export function Hero() {
             Order now
           </a>
           <a
-            href="#why"
+            href="#how"
             className="rounded-full border border-ink-line px-8 py-4 text-lg font-semibold text-warm transition hover:-translate-y-0.5 hover:border-cyan"
           >
-            Why us
+            How it works
           </a>
         </div>
 
