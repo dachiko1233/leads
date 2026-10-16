@@ -73,13 +73,13 @@ export function Hero() {
         </span>
 
         <h1 className="mt-8 text-6xl font-bold leading-[1.02] tracking-tight sm:text-7xl lg:text-8xl">
-          Local businesses that{" "}
+          We call local businesses with{" "}
           <span className="bg-linear-to-r from-cyan to-lime bg-clip-text text-transparent">
-            need social media,
+            dead social media.
           </span>{" "}
-          looking for a{" "}
+          You get the ones{" "}
           <span className="bg-linear-to-r from-cyan to-lime bg-clip-text text-transparent">
-            marketing company
+            ready to talk.
           </span>
         </h1>
 
@@ -97,13 +97,6 @@ export function Hero() {
             How it works
           </a>
         </div>
-
-        <p className="mt-6 text-base text-muted">
-          <span className="font-semibold text-warm">
-            We call them. You close them.
-          </span>{" "}
-          Pay once — €500 per lead.
-        </p>
 
         {/* Floating leads.csv product mockup */}
         <div className="relative mt-20 w-full max-w-6xl lg:-mx-16 lg:w-[calc(100%+8rem)]">

@@ -49,6 +49,9 @@ export function PricingSlider() {
         <p className="mt-3 text-muted">
           €500 per hot lead. Slide to choose how many you want. One-time payment.
         </p>
+        <p className="mt-2 text-sm text-muted">
+          Hot leads delivered within 7 business days.
+        </p>
       </div>
 
       <div className="mt-10 rounded-2xl border border-ink-line bg-ink-soft p-8">
@@ -143,7 +146,7 @@ export function PricingSlider() {
           {loading ? "Starting checkout…" : "Send me my list"}
         </button>
         <p className="mt-3 text-center text-xs text-muted">
-          Secure one-time checkout via Dodo Payments · delivered by email as leads.csv
+          Secure one-time checkout via Dodo Payments · leads delivered to your inbox
         </p>
       </div>
     </section>
