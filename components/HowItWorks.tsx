@@ -23,7 +23,7 @@ const STEPS: Step[] = [
   {
     accent: "cyan",
     title: "You place your order",
-    body: "Pick how many leads you want and pay — €500 per lead. That's it to get started.",
+    body: "Pick how many leads you want and pay — €100 per lead. That's it to get started.",
     icon: (
       <svg {...iconProps}>
         <path d="M6 6h15l-1.5 9h-12z" />
@@ -67,7 +67,7 @@ export function HowItWorks() {
         How it works
       </h2>
       <p className="mx-auto mt-4 max-w-xl text-center text-base text-muted">
-        You pay once. We do the calling. You close the clients.
+        You pay once. We call and close the clients. You do the work.
       </p>
 
       <div className="relative mt-14 grid gap-6 sm:grid-cols-3">

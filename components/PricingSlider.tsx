@@ -5,7 +5,7 @@ import { useState } from "react";
 const MIN = 1;
 const MAX = 5;
 const STEP = 1;
-const PRICE_PER_LEAD = 500; // €500 / lead
+const PRICE_PER_LEAD = 100; // €100 / lead
 
 export function PricingSlider() {
   const [leads, setLeads] = useState(5);
@@ -47,7 +47,7 @@ export function PricingSlider() {
       <div className="text-center">
         <h2 className="text-3xl font-bold sm:text-4xl">Pick your package</h2>
         <p className="mt-3 text-muted">
-          €500 per hot lead. Slide to choose how many you want. One-time payment.
+          €100 per hot lead. Slide to choose how many you want. One-time payment.
         </p>
         <p className="mt-2 text-sm text-muted">
           Hot leads delivered within 7 business days.
@@ -148,6 +148,22 @@ export function PricingSlider() {
         <p className="mt-3 text-center text-xs text-muted">
           Secure one-time checkout via Dodo Payments · leads delivered to your inbox
         </p>
+
+        {/* Risk reversal: money-back guarantee */}
+        <div className="mt-6 flex items-center justify-center gap-3 rounded-xl border border-lime/30 bg-lime/5 p-4">
+          <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-lime/15 text-lime ring-1 ring-lime/30">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" className="h-4 w-4">
+              <path
+                fillRule="evenodd"
+                d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0l-3.5-3.5a1 1 0 1 1 1.4-1.4l2.8 2.8 6.8-6.8a1 1 0 0 1 1.4 0Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </span>
+          <div>
+            <p className="text-sm font-semibold text-warm">100% cashback. Guaranteed.</p>
+          </div>
+        </div>
       </div>
     </section>
   );

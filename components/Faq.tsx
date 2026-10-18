@@ -9,7 +9,7 @@ const FAQS = [
   },
   {
     q: "How is a lead priced?",
-    a: "Simple: €500 per lead, paid once. A package is just the number of leads you choose — 1 lead is €500, 5 leads is €2,500. No subscription.",
+    a: "Simple: €100 per lead, paid once. A package is just the number of leads you choose — 1 lead is €100, 5 leads is €500. No subscription.",
   },
   {
     q: "How do I get my list?",

@@ -129,9 +129,9 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   // Format the amount actually charged. Dodo sends `total_amount` in the
-  // currency's lowest unit (cents); fall back to €500/lead if it is absent.
+  // currency's lowest unit (cents); fall back to €100/lead if it is absent.
   const currency = event.data?.currency ?? "EUR";
-  const amountCents = event.data?.total_amount ?? leadCount * 50000;
+  const amountCents = event.data?.total_amount ?? leadCount * 10000;
   const amountPaid = formatAmount(amountCents, currency);
   const paymentId = event.data?.payment_id ?? "";
   const timestamp = event.data?.created_at ?? new Date().toISOString();

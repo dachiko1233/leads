@@ -1,6 +1,6 @@
 // POST /api/checkout — create a Dodo Payments checkout session for a lead package.
 //
-// Pricing is €500 per lead and is fixed *server-side*: we pass the exact total to
+// Pricing is €100 per lead and is fixed *server-side*: we pass the exact total to
 // Dodo as `product_cart[].amount` (in cents). Because the amount is set, the
 // customer cannot edit the price on Dodo's hosted page, and currency selection
 // is disabled so the charge stays in EUR. This is a one-time charge, not a
@@ -16,12 +16,12 @@ interface CheckoutBody {
   location?: string;
 }
 
-// Pricing range: 1–5 leads at €500 each. The Dodo dynamic-price product must be
-// configured to match in the Dodo dashboard: min price €500 (1 lead), suggested
-// €2500 (5 leads). Keep these in sync with the frontend slider and the Dodo product.
+// Pricing range: 1–5 leads at €100 each. The Dodo dynamic-price product must be
+// configured to match in the Dodo dashboard: min price €100 (1 lead), suggested
+// €500 (5 leads). Keep these in sync with the frontend slider and the Dodo product.
 const MIN_LEADS = 1;
 const MAX_LEADS = 5;
-const PRICE_PER_LEAD_CENTS = 50000; // €500.00 per lead, in the currency's lowest unit.
+const PRICE_PER_LEAD_CENTS = 10000; // €100.00 per lead, in the currency's lowest unit.
 
 export async function POST(request: Request): Promise<Response> {
   let body: CheckoutBody;
@@ -69,7 +69,7 @@ export async function POST(request: Request): Promise<Response> {
         {
           product_id: productId,
           quantity: 1,
-          // (1) Fix the total server-side: N leads × €500 = N * 50000 cents.
+          // (1) Fix the total server-side: N leads × €100 = N * 10000 cents.
           // (2) Because `amount` is set on a pay-what-you-want product, the customer
           //     cannot change the price on the hosted checkout page.
           amount: leads * PRICE_PER_LEAD_CENTS,

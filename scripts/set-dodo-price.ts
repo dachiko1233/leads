@@ -1,13 +1,14 @@
-// One-off maintenance script: align the Dodo dynamic-price product with our
-// 20–1000 lead range (€1/lead).
+// One-off maintenance script: align the Dodo dynamic-price product minimum with
+// our 1–5 lead range (€100/lead).
 //
 // The 422 "Amount cannot be less than minimum amount specified for the product"
-// happens because the pay-what-you-want product still has its MINIMUM price set
-// to the old €100. Dodo stores that minimum in the price's `price` field (in
-// cents). This script lowers it to €20 so a 20-lead order (€20) is accepted.
+// happens when the pay-what-you-want product's MINIMUM price is set higher than
+// the smallest order we send (1 lead = €100). Dodo stores that minimum in the
+// price's `price` field (in cents). This script sets it to €100 so a 1-lead
+// order (€100) is accepted.
 //
 //   npx tsx scripts/set-dodo-price.ts          # dry run: prints current price
-//   npx tsx scripts/set-dodo-price.ts --apply  # writes the new €20 minimum
+//   npx tsx scripts/set-dodo-price.ts --apply  # writes the €100 minimum
 //
 // Reads DODO_PAYMENTS_API_KEY / DODO_ENVIRONMENT / DODO_PRODUCT_ID from the
 // environment or .env.local.
@@ -17,8 +18,8 @@ import path from "node:path";
 
 import { getDodoClient } from "../lib/dodo";
 
-// New pay-what-you-want minimum: €20 in cents. Keep in sync with MIN_LEADS * €1.
-const MIN_PRICE_CENTS = 20 * 100;
+// Pay-what-you-want minimum: €100 in cents. Keep in sync with MIN_LEADS * €100.
+const MIN_PRICE_CENTS = 100 * 100;
 
 async function loadEnvLocal(): Promise<void> {
   const file = path.join(process.cwd(), ".env.local");
@@ -71,7 +72,7 @@ async function main(): Promise<void> {
 
   if (!apply) {
     console.log(
-      `\nDry run. Re-run with --apply to set the minimum to ${MIN_PRICE_CENTS} cents (€20).`,
+      `\nDry run. Re-run with --apply to set the minimum to ${MIN_PRICE_CENTS} cents (€100).`,
     );
     return;
   }
@@ -87,7 +88,7 @@ async function main(): Promise<void> {
 
   const after = await client.products.retrieve(productId);
   console.log(
-    `\nUpdated. New minimum: ${"price" in after.price ? after.price.price : "n/a"} cents (€20).`,
+    `\nUpdated. New minimum: ${"price" in after.price ? after.price.price : "n/a"} cents (€100).`,
   );
 }
 
