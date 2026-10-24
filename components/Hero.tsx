@@ -98,6 +98,11 @@ export function Hero() {
           </a>
         </div>
 
+        <p className="mt-5 flex items-center gap-2 text-sm text-muted">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-cyan" />
+          Exclusive — each lead is sold to one agency only
+        </p>
+
         {/* Floating leads.csv product mockup */}
         <div className="relative mt-20 w-full max-w-6xl lg:-mx-16 lg:w-[calc(100%+8rem)]">
           <div className="pointer-events-none absolute -inset-x-16 -top-16 bottom-0 -z-10 bg-cyan opacity-15 blur-[130px]" />
